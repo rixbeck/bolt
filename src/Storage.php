@@ -1650,14 +1650,15 @@ class Storage
             'parameters' => array(),
             'hydrate' => true,
         );
-
-        list($metaParameters, $ctypeParameters) = $this->organizeQueryParameters($inParameters);
+        list ($metaParameters, $ctypeParameters) = $this->organizeQueryParameters($inParameters);
 
         $this->parseTextQuery($textquery, $decoded, $metaParameters, $ctypeParameters);
 
         // $decoded['contettypes'] gotten here
         // get page nr. from url if has
-        $metaParameters['page'] = $this->decodePageParameter($decoded['contenttypes'][0]);
+        if (count($decoded['contenttypes']) == 1) {
+            $metaParameters['page'] = $this->decodePageParameter($decoded['contenttypes'][0]);
+        }
 
         $this->prepareDecodedQueryForUse($decoded, $metaParameters, $ctypeParameters);
 
