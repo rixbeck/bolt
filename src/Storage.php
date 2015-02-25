@@ -1656,9 +1656,7 @@ class Storage
 
         // $decoded['contettypes'] gotten here
         // get page nr. from url if has
-        if (count($decoded['contenttypes']) == 1) {
-            $metaParameters['page'] = $this->decodePageParameter($decoded['contenttypes'][0]);
-        }
+        $metaParameters['page'] = $this->decodePageParameter(implode('_', $decoded['contenttypes']));
 
         $this->prepareDecodedQueryForUse($decoded, $metaParameters, $ctypeParameters);
 
