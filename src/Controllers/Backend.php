@@ -733,6 +733,8 @@ class Backend implements ControllerProviderInterface
 
             // If we have an ID now, this is an existing record
             if ($id) {
+                // Storage::parseTextQuery() requires explicitly declared status.
+                // This hacky declaration assumes ANY statuses while we are in save.
                 $content = $app['storage']->getContent($contenttype['slug'], array('id' => $id, 'status' => '!'));
                 $oldStatus = $content['status'];
                 $newStatus = $content['status'];
