@@ -733,7 +733,7 @@ class Backend implements ControllerProviderInterface
 
             // If we have an ID now, this is an existing record
             if ($id) {
-                $content = $app['storage']->getContent($contenttype['slug'], array('id' => $id));
+                $content = $app['storage']->getContent($contenttype['slug'], array('id' => $id, 'status' => '!'));
                 $oldStatus = $content['status'];
                 $newStatus = $content['status'];
             } else {
